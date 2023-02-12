@@ -1,0 +1,33 @@
+import datetime
+import pandas as pd
+import numpy as np
+import WorkingWithDB as base
+import check_message as cm
+
+a = {'_': 'ChannelMessages', 'pts': 16157, 'count': 6581, 'messages': [{'_': 'Message', 'id': 11150, 'peer_id': {'_': 'PeerChannel', 'channel_id': 1538125959}, 'date': datetime.datetime(2023, 2, 10, 17, 6, 57, tzinfo=datetime.timezone.utc), 'message': 'Здравствуйте', 'out': True, 'mentioned': False, 'media_unread': False, 'silent': False, 'post': False, 'from_scheduled': False, 'legacy': False, 'edit_hide': False, 'pinned': False, 'noforwards': False, 'from_id': {'_': 'PeerUser', 'user_id': 5541318158}, 'fwd_from': None, 'via_bot_id': None, 'reply_to': None, 'media': None, 'reply_markup': None, 'entities': [], 'views': None, 'forwards': None, 'replies': {'_': 'MessageReplies', 'replies': 0, 'replies_pts': 16157, 'comments': False, 'recent_repliers': [], 'channel_id': None, 'max_id': None, 'read_max_id': None}, 'edit_date': None, 'post_author': None, 'grouped_id': None, 'reactions': None, 'restriction_reason': [], 'ttl_period': None}, {'_': 'Message', 'id': 11145, 'peer_id': {'_': 'PeerChannel', 'channel_id': 1538125959}, 'date': datetime.datetime(2023, 2, 10, 15, 10, 30, tzinfo=datetime.timezone.utc), 'message': 'Произведу проплату застройщику за вашу недвижимость\nВыпущу менеджер чек\n\nПиши: @AntonKishinev', 'out': False, 'mentioned': False, 'media_unread': False, 'silent': False, 'post': False, 'from_scheduled': False, 'legacy': False, 'edit_hide': False, 'pinned': False, 'noforwards': False, 'from_id': {'_': 'PeerUser', 'user_id': 5822117348}, 'fwd_from': None, 'via_bot_id': None, 'reply_to': None, 'media': None, 'reply_markup': None, 'entities': [{'_': 'MessageEntityMention', 'offset': 79, 'length': 14}], 'views': None, 'forwards': None, 'replies': {'_': 'MessageReplies', 'replies': 0, 'replies_pts': 16157, 'comments': False, 'recent_repliers': [], 'channel_id': None, 'max_id': None, 'read_max_id': None}, 'edit_date': None, 'post_author': None, 'grouped_id': None, 'reactions': None, 'restriction_reason': [], 'ttl_period': None}], 'topics': [], 'chats': [{'_': 'Channel', 'id': 1538125959, 'title': 'Дубай. ЧАТ. Жизнь в Дубай. Переезд в Дубай. Говорим о Дубай. ОАЭ.', 'photo': {'_': 'ChatPhoto', 'photo_id': 5269304125319919835, 'dc_id': 2, 'has_video': False, 'stripped_thumb': b"\x01\x08\x081\x19'\x06\x8a(\xa6\xe6\xc6\xa2\x8f"}, 'date': datetime.datetime(2023, 2, 10, 16, 20, 11, tzinfo=datetime.timezone.utc), 'creator': False, 'left': False, 'broadcast': False, 'verified': False, 'megagroup': True, 'restricted': False, 'signatures': False, 'min': False, 'scam': False, 'has_link': False, 'has_geo': False, 'slowmode_enabled': False, 'call_active': False, 'call_not_empty': False, 'fake': False, 'gigagroup': False, 'noforwards': False, 'join_to_send': False, 'join_request': False, 'forum': False, 'access_hash': -4300364508513442640, 'username': 'life_in_dubai', 'restriction_reason': [
+], 'admin_rights': None, 'banned_rights': None, 'default_banned_rights': {'_': 'ChatBannedRights', 'until_date': datetime.datetime(2038, 1, 19, 3, 14, 7, tzinfo=datetime.timezone.utc), 'view_messages': False, 'send_messages': False, 'send_media': False, 'send_stickers': False, 'send_gifs': False, 'send_games': False, 'send_inline': False, 'embed_links': False, 'send_polls': False, 'change_info': True, 'invite_users': False, 'pin_messages': True, 'manage_topics': False, 'send_photos': False, 'send_videos': False, 'send_roundvideos': False, 'send_audios': False, 'send_voices': False, 'send_docs': False, 'send_plain': False}, 'participants_count': None, 'usernames': []}], 'users': [{'_': 'User', 'id': 5541318158, 'is_self': True, 'contact': False, 'mutual_contact': False, 'deleted': False, 'bot': False, 'bot_chat_history': False, 'bot_nochats': False, 'verified': False, 'restricted': False, 'min': False, 'bot_inline_geo': False, 'support': False, 'scam': False, 'apply_min_photo': True, 'fake': False, 'bot_attach_menu': False, 'premium': False, 'attach_menu_enabled': False, 'access_hash': 3839747792951704777, 'first_name': 'Евгений', 'last_name': 'Назаров', 'username': 'zalupin007', 'phone': '6281376213323', 'photo': {'_': 'UserProfilePhoto', 'photo_id': 6235774794595414866, 'dc_id': 5, 'has_video': False, 'personal': False, 'stripped_thumb': b'\x01\x08\x08\xa3l\xc1\x0f\x9b\xbb\xe6C\xc0\xc5\x14QHg'}, 'status': {'_': 'UserStatusOffline', 'was_online': datetime.datetime(2023, 2, 10, 17, 19, 8, tzinfo=datetime.timezone.utc)}, 'bot_info_version': None, 'restriction_reason': [], 'bot_inline_placeholder': None, 'lang_code': None, 'emoji_status': None, 'usernames': []}, {'_': 'User', 'id': 5822117348, 'is_self': False, 'contact': False, 'mutual_contact': False, 'deleted': False, 'bot': False, 'bot_chat_history': False, 'bot_nochats': False, 'verified': False, 'restricted': False, 'min': False, 'bot_inline_geo': False, 'support': False, 'scam': False, 'apply_min_photo': True, 'fake': False, 'bot_attach_menu': False, 'premium': False, 'attach_menu_enabled': False, 'access_hash': -8816515233709764997, 'first_name': 'Anton', 'last_name': None, 'username': None, 'phone': None, 'photo': {'_': 'UserProfilePhoto', 'photo_id': 5409161759559894487, 'dc_id': 2, 'has_video': False, 'personal': False, 'stripped_thumb': b"\x01\x08\x08\x99!\xdc\xdbv\xed\x03\xb9\x07\x9a(\xa2\x9f;'\xd9\xc4"}, 'status': {'_': 'UserStatusOffline', 'was_online': datetime.datetime(2023, 2, 10, 18, 10, 1, tzinfo=datetime.timezone.utc)}, 'bot_info_version': None, 'restriction_reason': [], 'bot_inline_placeholder': None, 'lang_code': None, 'emoji_status': None, 'usernames': []}], 'inexact': False, 'offset_id_offset': None}
+
+
+def get_data(a):
+    df1 = pd.DataFrame.from_dict(a['messages'])
+    # df1['chat_id123'] = df1.iloc[0].id
+    df2 = df1[['message', 'date']].copy()
+    df3 = pd.DataFrame.from_dict(a['users'])
+    df2['username'] = df3['username']
+    df4 = pd.DataFrame.from_dict(a['chats'])
+    df2['link'] = df4['username'].iloc[0]
+    res = df2.to_dict(orient='records')
+    keywords = base.DB.get_keywords_parse()
+    res2 = []
+    for id, el in enumerate(res):
+        now = datetime.datetime.now(tz=el['date'].tzinfo)
+        # secs = (now.hour-el['date'].hour)*3600+(now.minute -
+        #                                         el['date'].minute)*60+(now.second-el['date'].second)
+        secs = (now.minute - el['date'].minute) * \
+            60+(now.second-el['date'].second)
+        if secs < 60 and now.hour == el['date'].hour:
+            if cm.check_message(el['message']):
+                res2.append(
+                    {'message': el['message'], 'username': el['username'], 'link': el['link'], 'date': el['date']})
+
+    return res2
