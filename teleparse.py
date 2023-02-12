@@ -11,6 +11,7 @@ from telethon.tl.types.messages import ChannelMessages
 from telethon.tl.functions.messages import GetHistoryRequest
 from telethon.tl.types import InputPeerEmpty
 from telethon.tl.functions.messages import GetDialogsRequest
+import telethon.tl.types as chattype
 import info_parse
 import datetime
 
@@ -50,11 +51,8 @@ async def get_all_groups():
     ))
     chats.extend(result.chats)
     for chat in chats:
-        try:
-            if chat.megagroup == True or chat.gigagroup == True:
-                groups.append(chat)
-        except:
-            continue
+        if not isinstance(chat, chattype.ChatForbidden):
+            groups.append(chat)
     return groups
 
 

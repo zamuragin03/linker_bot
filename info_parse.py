@@ -17,7 +17,6 @@ def get_data(a):
     df4 = pd.DataFrame.from_dict(a['chats'])
     df2['link'] = df4['username'].iloc[0]
     res = df2.to_dict(orient='records')
-    keywords = base.DB.get_keywords_parse()
     res2 = []
     for id, el in enumerate(res):
         now = datetime.datetime.now(tz=el['date'].tzinfo)
@@ -29,5 +28,4 @@ def get_data(a):
             if cm.check_message(el['message']):
                 res2.append(
                     {'message': el['message'], 'username': el['username'], 'link': el['link'], 'date': el['date']})
-
     return res2

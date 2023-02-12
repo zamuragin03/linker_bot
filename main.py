@@ -35,8 +35,7 @@ async def main_func(dp: Dispatcher):
     a = []
     for group in groups:
         tmp = await teleparse.get_new_messages(group)
-        if tmp is not None:
-            a.append(tmp)
+        a.append(tmp)
     for idx, el in enumerate(a):
         try:
             for admin in admins:
@@ -71,10 +70,10 @@ async def start_client(message: types.Message):
 async def start_client(message: types.Message):
     base.DB.add_new_admin(message.from_user.id)
     await bot.send_message(
-            message.from_user.id,
-            text='Вы успешно подписались на рассылку',
-            reply_markup=keyboards.ReplyKeyboardRemove()
-        )
+        message.from_user.id,
+        text='Вы успешно подписались на рассылку',
+        reply_markup=keyboards.ReplyKeyboardRemove()
+    )
 
 
 @dp.message_handler(commands=['help'], state='*')
