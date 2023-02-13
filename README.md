@@ -9,4 +9,4 @@ Before starting this project u should:
 5. Install requirements >> 
 6. ### pip3 install requirements.txt
 7. 
-8. ### run app python3 main.py
+### run app python3 main.py
