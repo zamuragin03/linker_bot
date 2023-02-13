@@ -8,4 +8,4 @@ Before starting this project u should:
 3. Put it into file with the same names as in main.py 
 4. Install requirements >> 
 ## pip3 install requirements.txt
-5. ### run app python3 main.py
+5. ## run app python3 main.py
