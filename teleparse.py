@@ -12,6 +12,7 @@ from telethon.tl.functions.messages import GetHistoryRequest
 from telethon.tl.types import InputPeerEmpty
 from telethon.tl.functions.messages import GetDialogsRequest
 import telethon.tl.types as chattype
+from telethon.errors import *
 import info_parse
 import datetime
 
@@ -53,13 +54,13 @@ async def get_all_groups():
     for chat in chats:
         if not isinstance(chat, chattype.ChatForbidden):
             groups.append(chat)
+    # print(groups)
     return groups
 
 
 async def get_new_messages(chat):
     offset_id = 0
     limit = 10
-
     try:
         history = await client(GetHistoryRequest(
             peer=chat,
@@ -71,9 +72,17 @@ async def get_new_messages(chat):
             min_id=0,
             hash=0
         ))
-    except:
-        print('wrong chat')
-        return
+    except ChannelInvalidError:
+        print(1)
+    except ChannelPrivateError:
+        print(2)
+    except ChatIdInvalidError:
+        print(3)
+    except PeerIdInvalidError:
+        print(4)
+    except TimeoutError:
+        print(5)
+
     data = history.to_dict()
     try:
         res = info_parse.get_data(data)
