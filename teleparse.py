@@ -60,7 +60,8 @@ async def get_all_groups():
 
 async def get_new_messages(chat):
     offset_id = 0
-    limit = 10
+    limit = 8
+    data =[]
     try:
         history = await client(GetHistoryRequest(
             peer=chat,
@@ -72,6 +73,7 @@ async def get_new_messages(chat):
             min_id=0,
             hash=0
         ))
+        data = history.to_dict()
     except ChannelInvalidError:
         print(1)
     except ChannelPrivateError:
@@ -82,8 +84,6 @@ async def get_new_messages(chat):
         print(4)
     except TimeoutError:
         print(5)
-
-    data = history.to_dict()
     try:
         res = info_parse.get_data(data)
     except:

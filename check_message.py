@@ -4,6 +4,7 @@ keywords = base.DB.get_keywords_parse()
 
 
 def check_message(message):
+
     for phrase in keywords:
         a = []
         for word in phrase.split(' '):

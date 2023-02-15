@@ -1,5 +1,5 @@
 
-from aiogram.types import ParseMode
+from aiogram.types import *
 from aiogram import Bot, types, executor, Dispatcher
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 import keyboards
@@ -11,6 +11,7 @@ import configparser
 import teleparse
 import datetime
 import asyncio
+import traceback
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
 
 
@@ -34,25 +35,28 @@ async def main_func(dp: Dispatcher):
     admins = base.DB.get_admins_list()
     a = []
     for group in groups:
-        tmp = await teleparse.get_new_messages(group)
-        a.append(tmp)
-    for idx, el in enumerate(a):
+        # print(group.title)
         try:
+            tmp = await teleparse.get_new_messages(group)
+            if tmp is not None:
+                a.append(tmp)
+        except:
+            pass
+    for el in a:
+        for mes in el:
             for admin in admins:
                 await bot.send_message(
                     admin,
-                    text=text(f'В группе @'+el[idx]['link'] + '\nИнтересное сообщение ' + 'от @' + str(el[idx]['username']) + '\n' +
-                              el[idx]['message'] + '\n' + ' от ' + str(el[idx]['date'])),
+                    text=text(f'В группе @'+mes['link'] + '\nИнтересное сообщение ' + 'от @' + str(mes['username']) + '\n' +
+                              mes['message'] + '\n' + ' от ' + str(mes['date'])),
                     reply_markup=keyboards.ReplyKeyboardRemove()
                 )
             # await bot.send_message(
-            #     225529144,
-            #     text=text(f'В группе @'+el[idx]['link'] + '\nИнтересное сообщение ' + 'от @' + str(el[idx]['username']) + '\n' +
-            #               el[idx]['message'] + '\n' + ' от ' + str(el[idx]['date'])),
-            #     reply_markup=keyboards.ReplyKeyboardRemove()
-            # )
-        except:
-            pass
+            #         225529144,
+            #         text=text(f'В группе @'+mes['link'] + '\nИнтересное сообщение ' + 'от @' + str(mes['username']) + '\n' +
+            #                   mes['message'] + '\n' + ' от ' + str(mes['date'])),
+            #         reply_markup=keyboards.ReplyKeyboardRemove()
+            #     )
 
 
 @dp.message_handler(commands=['run_client'], state='*')
