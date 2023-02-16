@@ -18,7 +18,7 @@ def get_data(a):
         now = datetime.datetime.now(tz=el['date'].tzinfo)
         secs = (now.minute - el['date'].minute) * \
             60+(now.second-el['date'].second)
-        if secs < 60 and now.hour == el['date'].hour:
+        if abs(secs) < 60 and now.hour == el['date'].hour:
             flag = cm.check_message(el['message'])
             # print((flag, el['message'], el['link'],secs))
             if flag:

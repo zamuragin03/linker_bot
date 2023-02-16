@@ -47,7 +47,7 @@ async def main_func(dp: Dispatcher):
             for admin in admins:
                 await bot.send_message(
                     admin,
-                    text=text(f'В группе @'+mes['link'] + '\nИнтересное сообщение ' + 'от @' + str(mes['username']) + '\n' +
+                    text=text(f'В группе @'+str(mes['link']) + '\nИнтересное сообщение ' + 'от @' + str(mes['username']) + '\n' +
                               mes['message'] + '\n' + ' от ' + str(mes['date'])),
                     reply_markup=keyboards.ReplyKeyboardRemove()
                 )
