@@ -112,6 +112,15 @@ class DB():
             a.append(el[1])
         return a
 
+    def get_banwords():
+        res = cur.execute('select*from ban_words')
+        d = res.fetchall()
+        a = []
+        for el in d:
+            a.append(el[1])
+        return a
+
+
     def delete_keyword_by_id(content: str):
         content = content.replace(' ', '')
         arr = content.split(',')
