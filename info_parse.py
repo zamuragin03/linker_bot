@@ -1,7 +1,5 @@
 import datetime
 import pandas as pd
-import numpy as np
-import WorkingWithDB as base
 import check_message as cm
 
 

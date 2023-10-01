@@ -11,9 +11,11 @@ def check_message(message):
                 a.append(1)
             else:
                 a.append(0)
-        if (a.count(1)/len(a)) > 0.6:
+        accuracy = a.count(1)/len(a)
+        if accuracy>= 0.6:
             for word in banwords:
-                if word in message:
+                if word.lower() in message.lower():
+                    print(word)
                     return False
-                return True
+            return True
     return False

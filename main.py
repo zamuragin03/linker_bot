@@ -9,11 +9,8 @@ import parse
 from aiogram.utils.markdown import *
 import configparser
 import teleparse
-import datetime
-import asyncio
-import traceback
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
-
+import logging
 
 config = configparser.ConfigParser()
 config.read("config.ini")
@@ -23,6 +20,9 @@ bot = Bot(token=BOT_TOKEN)
 dp = Dispatcher(bot, storage=MemoryStorage())
 
 
+logger = logging.getLogger(__name__)
+logging.basicConfig(filename="debug.log", filemode="w", level=logging.DEBUG, encoding='UTF-8', format='%(asctime)s - %(levelname)s - %(message)s', )
+
 scheduler = AsyncIOScheduler()
 
 
@@ -31,11 +31,11 @@ def schedule():
 
 
 async def main_func(dp: Dispatcher):
+    await teleparse.run_client()
     groups = await teleparse.get_all_groups()
     admins = base.DB.get_admins_list()
     a = []
     for group in groups:
-        # print(group.title)
         try:
             tmp = await teleparse.get_new_messages(group)
             if tmp is not None:
@@ -45,29 +45,26 @@ async def main_func(dp: Dispatcher):
     for el in a:
         for mes in el:
             for admin in admins:
-                await bot.send_message(
-                    admin,
-                    text=text(f'В группе @'+str(mes['link']) + '\nИнтересное сообщение ' + 'от @' + str(mes['username']) + '\n' +
-                              mes['message'] + '\n' + ' от ' + str(mes['date'])),
-                    reply_markup=keyboards.ReplyKeyboardRemove()
-                )
-            # await bot.send_message(
-            #         225529144,
-            #         text=text(f'В группе @'+mes['link'] + '\nИнтересное сообщение ' + 'от @' + str(mes['username']) + '\n' +
-            #                   mes['message'] + '\n' + ' от ' + str(mes['date'])),
-            #         reply_markup=keyboards.ReplyKeyboardRemove()
-            #     )
+                try:
+                    await bot.send_message(
+                        admin,
+                        text=text(f'В группе @'+str(mes['link']) + '\nИнтересное сообщение ' + 'от @' + str(mes['username']) + '\n' +
+                                  mes['message'] + '\n' + ' от ' + str(mes['date'])),
+                        reply_markup=keyboards.ReplyKeyboardRemove()
+                    )
+                except:
+                    pass
 
 
-@dp.message_handler(commands=['run_client'], state='*')
-async def start_client(message: types.Message):
-    if message.from_user.id == 225529144:
-        await teleparse.run_client()
-        await bot.send_message(
-            225529144,
-            text='Клиент запущен',
-            reply_markup=keyboards.ReplyKeyboardRemove()
-        )
+# @dp.message_handler(commands=['run_client'], state='*')
+# async def start_client(message: types.Message):
+#     if message.from_user.id == 225529144:
+        
+#         await bot.send_message(
+#             225529144,
+#             text='Клиент запущен',
+#             reply_markup=keyboards.ReplyKeyboardRemove()
+#         )
 
 
 @dp.message_handler(commands=['add_new_user'], state='*')
