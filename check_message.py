@@ -15,7 +15,6 @@ def check_message(message):
         if accuracy>= 0.6:
             for word in banwords:
                 if word.lower() in message.lower():
-                    print(word)
                     return False
             return True
     return False
