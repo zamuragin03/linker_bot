@@ -31,7 +31,6 @@ def schedule():
 
 
 async def main_func(dp: Dispatcher):
-    await teleparse.run_client()
     groups = await teleparse.get_all_groups()
     admins = base.DB.get_admins_list()
     a = []
@@ -56,15 +55,15 @@ async def main_func(dp: Dispatcher):
                     pass
 
 
-# @dp.message_handler(commands=['run_client'], state='*')
-# async def start_client(message: types.Message):
-#     if message.from_user.id == 225529144:
-        
-#         await bot.send_message(
-#             225529144,
-#             text='Клиент запущен',
-#             reply_markup=keyboards.ReplyKeyboardRemove()
-#         )
+@dp.message_handler(commands=['run_client'], state='*')
+async def start_client(message: types.Message):
+    if message.from_user.id == 225529144:
+        await teleparse.run_client()
+        await bot.send_message(
+            225529144,
+            text='Клиент запущен',
+            reply_markup=keyboards.ReplyKeyboardRemove()
+        )
 
 
 @dp.message_handler(commands=['add_new_user'], state='*')
